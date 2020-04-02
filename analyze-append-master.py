@@ -21,6 +21,7 @@ ENTRY_ATTEMPT_DENIED = "Entry Attempt Denied"
 TEMP_CARD_USER = "Temp"
 LATE_TIME = ["19", "20"] # this is suuuper janky, but whatev
 VERY_LATE_TIME = ["21", "22", "23", "00", "01", "02", "03"] # more jankiness, but these are the hours of 9:00 pm through 3:59 am
+ENTRY_GRANTED = "User Entry"
 
 # Initialize our lists and counters for events we want to identify
 rows = []
@@ -30,6 +31,7 @@ late_entries = [] #for events occurring from 7:00 pm to 8:59 pm
 very_late_entries = [] #for events occurring from 9:00 p m to 3:59 am
 temp_card_events = []
 temp_cards_used = []
+successful_entries = []
 
 # Read the csv file and log results
 with open(LOG_FILE, 'r') as csvfile:
@@ -87,6 +89,10 @@ with open(LOG_FILE, 'r') as csvfile:
     for elem in temp_card_events:
         temp_cards_used.append(elem[2])
 
+    # Store successful entries
+    for row in rows:
+        if ENTRY_GRANTED in row[4]:
+            successful_entries.append(row)
 
     # Write all results to master log text file
 
@@ -131,6 +137,13 @@ with open(LOG_FILE, 'r') as csvfile:
     if len(temp_card_events) > 0:
         print("These events were:", file=f)
     for elem in temp_card_events:
+        print(elem, file=f)
+
+    # comment this out if you aren't looking for successful entries
+    print("\nThe number of times an active, assigned card was granted access is: ", len(successful_entries), file=f)
+    if len(successful_entries) > 0:
+        print("These events were: ", file=f)
+    for elem in successful_entries:
         print(elem, file=f)
 
     f.close()
