@@ -137,7 +137,7 @@ with open(LOG_FILE, 'r') as csvfile:
         print(elem)
 
     # comment this out if you aren't looking for successful entries
-    print("\nThe number of times an active, assigned card was granted acces is: ", len(successful_entries))
+    print("\nThe number of times an active, assigned card was granted access is: ", len(successful_entries))
     if len(successful_entries) > 0:
         print("These events were:")
     for elem in successful_entries:
