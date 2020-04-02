@@ -4,9 +4,9 @@ import datetime
 import ntpath
 
 # Specify the original csv file to analyze and date range you're looking at
-LOG_FILE_PATH = "/Users/jamieiguchi/projects/python/keycards/2020-04-02-F2.csv"
-FROM_DATE = "03/16/20"
-TO_DATE = "04/02/20"
+LOG_FILE_PATH = "<YOUR PATH>"
+FROM_DATE = "<YOUR FROM DATE>"
+TO_DATE = "<YOUR TO DATE>"
 
 # Extract filename from log file path
 def path_leaf(path):
